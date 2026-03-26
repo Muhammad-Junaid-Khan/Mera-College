@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admission Dashboard</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f5f7fb;
+            --card: #ffffff;
+            --text: #0f172a
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: Inter, system-ui, Arial
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text)
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 240px;
+            background: #0f172a;
+            color: #fff;
+            padding: 20px
+        }
+
+        .sidebar h2 {
+            margin-top: 0
+        }
+
+        .sidebar a {
+            display: block;
+            color: #cbd5f5;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 6px
+        }
+
+        .sidebar a:hover {
+            background: #1e293b;
+            color: #fff
+        }
+
+        .main {
+            margin-left: 240px;
+            padding: 20px
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px
+        }
+
+        .card {
+            background: var(--card);
+            padding: 18px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .06)
+        }
+
+        .table {
+            background: var(--card);
+            border-radius: 18px;
+            overflow: auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .06)
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer
+        }
+
+        .form-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .4);
+            display: none;
+            align-items: center;
+            justify-content: center
+        }
+
+        .form-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 16px;
+            width: 95%;
+            max-width: 500px
+        }
+
+        .form-box input,
+        .form-box select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px
+        }
+
+        @media(max-width:800px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                display: flex;
+                gap: 10px;
+                overflow: auto
+            }
+
+            .main {
+                margin-left: 0
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- side bar    -->
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <a href="./index.html">Home Page</a>
+        <a href="./admin-dashboard.html">Admin Dashboard</a>
+        <a href="#">Dashboard</a>
+        <a href="#">Admissions</a>
+        <a href="#">Students</a>
+        <a href="#">Settings</a>
+    </div>
+    <div class="main">
+        <div class="header">
+            <h1>Admission Dashboard</h1>
+            <button class="btn" onclick="openForm()">New Admission</button>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <h3>Total Applications</h3>
+                <p id="total">0</p>
+            </div>
+            <div class="card">
+                <h3>Approved</h3>
+                <p>0</p>
+            </div>
+            <div class="card">
+                <h3>Pending</h3>
+                <p>0</p>
+            </div>
+            <div class="card">
+                <h3>Rejected</h3>
+                <p>0</p>
+            </div>
+        </div>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="list"></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-modal" id="modal">
+        <div class="form-box">
+            <h2>New Admission</h2>
+            <input id="name" placeholder="Student Name" />
+            <select id="course">
+                <option>Computer Science</option>
+                <option>Commerce</option>
+                <option>Arts</option>
+            </select>
+            <button class="btn" onclick="addStudent()">Submit</button>
+            <button class="btn" style="background:#64748b" onclick="closeForm()">Close</button>
+        </div>
+    </div>
+    <!-- Developer Footer -->
+    <footer class="developer-footer">
+        <div class="container text-center">
+
+            <h5 class="footer-title">Website Developer</h5>
+
+            <p class="footer-text">
+                Designed & Developed with ❤️ by
+                <a href="https://muhammad-junaid-khan.github.io/portfolio-hub/" target="_blank" class="dev-link">
+                    Muhammad Junaid Khan
+                </a>
+            </p>
+
+        </div>
+    </footer>
+
+
+    <script>
+        let students = [];
+        function openForm() { document.getElementById('modal').style.display = 'flex' }
+        function closeForm() { document.getElementById('modal').style.display = 'none' }
+        function addStudent() {
+            const name = document.getElementById('name').value;
+            const course = document.getElementById('course').value;
+            if (!name) return alert('Enter name');
+            students.push({ name, course, status: 'Pending' });
+            render(); closeForm();
+        }
+        function render() {
+            const list = document.getElementById('list'); list.innerHTML = '';
+            students.forEach(s => {
+                list.innerHTML += `<tr><td>${s.name}</td><td>${s.course}</td><td>${s.status}</td></tr>`
+            });
+            document.getElementById('total').innerText = students.length;
+        }
+    </script>
+</body>
+
+</html>
