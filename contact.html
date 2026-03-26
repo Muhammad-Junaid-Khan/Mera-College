@@ -25,48 +25,58 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="./index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-
+  <!-- Contact Section -->
   <div class="container py-5">
-    <h2 class="text-center mb-4">Contact Us</h2>
-    <form style="max-width:600px;margin:auto;">
+    <h2 class="text-center mb-4 animate-on-scroll">Contact Us</h2>
+    <form id="contactForm" style="max-width:600px;margin:auto;">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Your Name">
+        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Your Email">
+        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
       </div>
       <div class="mb-3">
         <label for="message" class="form-label">Message</label>
-        <textarea class="form-control" id="message" rows="5" placeholder="Write your message"></textarea>
+        <textarea class="form-control" id="message" rows="5" placeholder="Write your message" required></textarea>
       </div>
       <button type="submit" class="btn btn-success w-100">Send Message</button>
     </form>
+    <p id="formStatus" class="text-center mt-3 text-success" style="display:none;">Message sent successfully!</p>
   </div>
+
   <!-- Developer Footer -->
   <footer class="developer-footer">
     <div class="container text-center">
-
       <h5 class="footer-title">Website Developer</h5>
-
       <p class="footer-text">
         Designed & Developed with ❤️ by
         <a href="https://muhammad-junaid-khan.github.io/portfolio-hub/" target="_blank" class="dev-link">
           Muhammad Junaid Khan
         </a>
       </p>
-
     </div>
   </footer>
 
+  <!-- JS -->
   <script src="js/script.js"></script>
+  <script>
+    // Prevent actual form submission for demo
+    const contactForm = document.getElementById('contactForm');
+    contactForm?.addEventListener('submit', function(e){
+      e.preventDefault();
+      document.getElementById('formStatus').style.display = 'block';
+      contactForm.reset();
+    });
+  </script>
 </body>
 
 </html>
