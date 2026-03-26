@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Admission Registration</title>
-     <!-- Bootstrap CSS -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Admission Registration</title>
+
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,190 +14,201 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./css/style.css">
-    <style>
-        :root {
-            --primary: #2563eb;
-            --bg: #f1f5f9;
-            --card: #ffffff;
-            --text: #0f172a
-        }
 
-        * {
-            box-sizing: border-box;
-            font-family: Inter, system-ui, Arial
-        }
+  <style>
+    :root {
+      --primary: #2563eb;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+    }
 
-        body {
-            margin: 0;
-            background: linear-gradient(120deg, #eef2ff, #f8fafc);
-            color: var(--text)
-        }
+    * {
+      box-sizing: border-box;
+      font-family: Inter, system-ui, Arial;
+    }
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px
-        }
+    body {
+      margin: 0;
+      background: linear-gradient(120deg, #eef2ff, #f8fafc);
+      color: var(--text);
+    }
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px
-        }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
 
-        .header h1 {
-            margin: 0;
-            font-size: 34px
-        }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-        .form-wrapper {
-            background: var(--card);
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, .08)
-        }
+    .header h1 {
+      margin: 0;
+      font-size: 34px;
+    }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px
-        }
+    .form-wrapper {
+      background: var(--card);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, .08);
+    }
 
-        .field {
-            display: flex;
-            flex-direction: column
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
 
-        label {
-            font-size: 14px;
-            margin-bottom: 6px
-        }
+    .field {
+      display: flex;
+      flex-direction: column;
+    }
 
-        input,
-        select,
-        textarea {
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid #dbeafe;
-            font-size: 14px
-        }
+    label {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
 
-        textarea {
-            resize: vertical;
-            min-height: 90px
-        }
+    input,
+    select,
+    textarea {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #dbeafe;
+      font-size: 14px;
+    }
 
-        .full {
-            grid-column: 1/-1
-        }
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
 
-        .btn {
-            background: var(--primary);
-            border: none;
-            color: #fff;
-            padding: 14px;
-            border-radius: 14px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px
-        }
+    .full {
+      grid-column: 1/-1;
+    }
 
-        .btn:hover {
-            opacity: .9
-        }
+    .btn {
+      background: var(--primary);
+      border: none;
+      color: #fff;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
 
-        .success {
-            display: none;
-            margin-top: 15px;
-            padding: 12px;
-            background: #dcfce7;
-            border-radius: 12px
-        }
+    .btn:hover {
+      opacity: 0.9;
+    }
 
-        @media(max-width:800px) {
-            .grid {
-                grid-template-columns: 1fr
-            }
-        }
-    </style>
+    .success {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      background: #dcfce7;
+      border-radius: 12px;
+      color: #166534;
+      font-weight: 500;
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Mera College</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="./index.html">Home</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-
-
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
-        <div class="header">
-            <h1>Student Admission Form</h1>
-            <p>Apply for admission online</p>
-        </div>
-        <div class="form-wrapper">
-            <form id="admissionForm">
-                <div class="grid">
-                    <div class="field"><label>Full Name</label><input required></div>
-                    <div class="field"><label>Father Name</label><input required></div>
-                    <div class="field"><label>Email</label><input type="email" required></div>
-                    <div class="field"><label>Phone</label><input required></div>
-                    <div class="field"><label>Date of Birth</label><input type="date" required></div>
-                    <div class="field"><label>Course / Program</label>
-                        <select required>
-                            <option value="">Select Program</option>
-                            <option>Computer Science</option>
-                            <option>Commerce</option>
-                            <option>Arts</option>
-                            <option>Engineering</option>
-                        </select>
-                    </div>
-                    <div class="field full"><label>Address</label><textarea required></textarea></div>
-                    <div class="field"><label>Upload Photo</label><input type="file"></div>
-                    <div class="field"><label>Previous Qualification</label><input></div>
-                    <div class="full"><button class="btn" type="submit">Submit Application</button></div>
-                </div>
-            </form>
-            <div class="success" id="successMsg">Application submitted successfully.</div>
-        </div>
+      <a class="navbar-brand fw-bold" href="#">Mera College</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="./index.html">Home</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <!-- Developer Footer -->
-    <footer class="developer-footer">
-        <div class="container text-center">
-
-            <h5 class="footer-title">Website Developer</h5>
-
-            <p class="footer-text">
-                Designed & Developed with ❤️ by
-                <a href="https://muhammad-junaid-khan.github.io/portfolio-hub/" target="_blank" class="dev-link">
-                    Muhammad Junaid Khan
-                </a>
-            </p>
-
+  <!-- Admission Form -->
+  <div class="container">
+    <div class="header">
+      <h1>Student Admission Form</h1>
+      <p>Apply for admission online</p>
+    </div>
+    <div class="form-wrapper animate-on-scroll">
+      <form id="admissionForm">
+        <div class="grid">
+          <div class="field"><label>Full Name</label><input required></div>
+          <div class="field"><label>Father Name</label><input required></div>
+          <div class="field"><label>Email</label><input type="email" required></div>
+          <div class="field"><label>Phone</label><input required></div>
+          <div class="field"><label>Date of Birth</label><input type="date" required></div>
+          <div class="field"><label>Course / Program</label>
+            <select required>
+              <option value="">Select Program</option>
+              <option>Computer Science</option>
+              <option>Commerce</option>
+              <option>Arts</option>
+              <option>Engineering</option>
+            </select>
+          </div>
+          <div class="field full"><label>Address</label><textarea required></textarea></div>
+          <div class="field"><label>Upload Photo</label><input type="file"></div>
+          <div class="field"><label>Previous Qualification</label><input></div>
+          <div class="full"><button class="btn" type="submit">Submit Application</button></div>
         </div>
-    </footer>
+      </form>
+      <div class="success" id="successMsg">Application submitted successfully.</div>
+    </div>
+  </div>
 
-    <script>
-        const form = document.getElementById('admissionForm');
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            document.getElementById('successMsg').style.display = 'block';
-            form.reset();
-        });
-        
-    </script>
+  <!-- Developer Footer -->
+  <footer class="developer-footer">
+    <div class="container text-center">
+      <h5 class="footer-title">Website Developer</h5>
+      <p class="footer-text">
+        Designed & Developed with ❤️ by
+        <a href="https://muhammad-junaid-khan.github.io/portfolio-hub/" target="_blank" class="dev-link">
+          Muhammad Junaid Khan
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Animate form card on scroll
+    function scrollAnimate() {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      const triggerBottom = window.innerHeight * 0.85;
+      elements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < triggerBottom) el.classList.add('visible');
+      });
+    }
+    window.addEventListener('scroll', scrollAnimate);
+    window.addEventListener('load', scrollAnimate);
+
+    // Form submission handler
+    const form = document.getElementById('admissionForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      document.getElementById('successMsg').style.display = 'block';
+      form.reset();
+    });
+  </script>
 </body>
 
 </html>
