@@ -28,9 +28,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="./index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-
+          <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="./admin-dashboard.html">Admin</a></li>
           <li class="nav-item"><a class="nav-link" href="./teacher-panel.html">Teacher</a></li>
           <li class="nav-item"><a class="nav-link" href="./student-panel.html">Student</a></li>
@@ -40,27 +39,26 @@
     </div>
   </nav>
 
-
-
+  <!-- Login Form Section -->
   <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-    <div class="card shadow p-4 rounded w-100" style="max-width: 400px;">
+    <div class="card shadow p-4 rounded w-100 animate-on-scroll" style="max-width: 400px;">
       <h4 class="text-center mb-4">Login</h4>
-      <form>
+      <form id="loginForm">
         <div class="mb-3">
           <label for="role" class="form-label">Select Role</label>
           <select class="form-select" id="role">
-            <option value="admin"> Admin</option>
+            <option value="admin">Admin</option>
             <option value="teacher">Teacher</option>
             <option value="student">Student</option>
           </select>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter email">
+          <input type="email" class="form-control" id="email" placeholder="Enter email" required>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password">
+          <input type="password" class="form-control" id="password" placeholder="Password" required>
         </div>
         <button type="submit" class="btn btn-success w-100">Login</button>
       </form>
@@ -70,20 +68,38 @@
   <!-- Developer Footer -->
   <footer class="developer-footer">
     <div class="container text-center">
-
       <h5 class="footer-title">Website Developer</h5>
-
       <p class="footer-text">
         Designed & Developed with ❤️ by
         <a href="https://muhammad-junaid-khan.github.io/portfolio-hub/" target="_blank" class="dev-link">
           Muhammad Junaid Khan
         </a>
       </p>
-
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script>
+    // Animate login card on scroll
+    function scrollAnimate() {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      const triggerBottom = window.innerHeight * 0.85;
+      elements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < triggerBottom) el.classList.add('visible');
+      });
+    }
+    window.addEventListener('scroll', scrollAnimate);
+    window.addEventListener('load', scrollAnimate);
+
+    // Simple login handler (for demo, you can connect to backend)
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const role = document.getElementById('role').value;
+      alert(`Logging in as ${role}`);
+      // Add real authentication logic here
+    });
+  </script>
+
 </body>
 
 </html>
